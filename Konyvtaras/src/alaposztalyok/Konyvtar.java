@@ -10,5 +10,10 @@ package alaposztalyok;
  * @author Sandor
  */
 public interface Konyvtar {
-    
+
+    public void beiratkoz();
+
+    public boolean kiiratkoz();
+
+    public int getOlvasoSzam();
 }

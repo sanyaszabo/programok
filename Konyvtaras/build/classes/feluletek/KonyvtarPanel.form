@@ -62,8 +62,8 @@
         <Container class="javax.swing.JPanel" name="tab1Panel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="tab1">
-                <Property name="tabTitle" type="java.lang.String" value="tab1"/>
+              <JTabbedPaneConstraints tabName="Olvas&#xf3;k">
+                <Property name="tabTitle" type="java.lang.String" value="Olvas&#xf3;k"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -152,24 +152,33 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Beiratkoz"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tab1BeiratkozBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="tab1KiiratkozBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Kiiratkoz"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tab1KiiratkozBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="tab1StatusLbl">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jLabel1"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="tab1StatusLbl.setVisible(false);"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="tab2Panel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="tab2">
-                <Property name="tabTitle" type="java.lang.String" value="tab2"/>
+              <JTabbedPaneConstraints tabName="M&#x171;k&#xf6;dtet&#xe9;s">
+                <Property name="tabTitle" type="java.lang.String" value="M&#x171;k&#xf6;dtet&#xe9;s"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -311,8 +320,8 @@
         <Container class="javax.swing.JPanel" name="tab3Panel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="tab3">
-                <Property name="tabTitle" type="java.lang.String" value="tab3"/>
+              <JTabbedPaneConstraints tabName="Kimutat&#xe1;s">
+                <Property name="tabTitle" type="java.lang.String" value="Kimutat&#xe1;s"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -399,6 +408,28 @@
               </SubComponents>
             </Container>
           </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel1">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="K&#xf6;nyv v&#xe1;s&#xe1;rl&#xe1;s">
+                <Property name="tabTitle" type="java.lang.String" value="K&#xf6;nyv v&#xe1;s&#xe1;rl&#xe1;s"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="396" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="301" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
         </Container>
       </SubComponents>
     </Container>

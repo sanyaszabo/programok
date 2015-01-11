@@ -95,12 +95,12 @@ public class KonyvtarasFrame extends javax.swing.JFrame {
     private void vezerel() {
         try {
             adatBeallitas();
-            KonyvtarPanel.beolvas();
+            new KonyvtarPanel().beolvas();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Fájlkezelési hiba.");
         }
     }
-    
+
     private void adatBeallitas() {
         EgyetemiKonyvtar.setFejkvotaSzorzo(1500);
         VarosiKonyvtar.setKonyvKeret(10000);

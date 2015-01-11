@@ -29,6 +29,10 @@ public class VarosiKonyvtar implements Konyvtar {
         VarosiKonyvtar.konyvKeret = konyvKeret;
     }
 
+    public int getOlvasoSzam() {
+        return olvasoSzam;
+    }
+
     public static int getKonyvKeret() {
         return konyvKeret;
     }
@@ -41,11 +45,17 @@ public class VarosiKonyvtar implements Konyvtar {
 
     }
 
+    @Override
     public void beiratkoz() {
         olvasoSzam = olvasoSzam + 1;
     }
 
-    public void kiiratkoz() {
+    @Override
+    public boolean kiiratkoz() {
+        if (olvasoSzam <= 0) {
+            return false;
+        }
         olvasoSzam = olvasoSzam - 1;
+        return true;
     }
 }

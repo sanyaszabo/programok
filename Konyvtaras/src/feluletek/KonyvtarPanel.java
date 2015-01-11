@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 public class KonyvtarPanel extends javax.swing.JPanel {
 
@@ -56,6 +57,7 @@ public class KonyvtarPanel extends javax.swing.JPanel {
         tab3KimutatasLbl = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tab3KimutatasTbl = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
 
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -76,10 +78,21 @@ public class KonyvtarPanel extends javax.swing.JPanel {
         tab1KonyvtarLbl.setText("Könyvtárak");
 
         tab1BeiratkozBtn.setText("Beiratkoz");
+        tab1BeiratkozBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tab1BeiratkozBtnActionPerformed(evt);
+            }
+        });
 
         tab1KiiratkozBtn.setText("Kiiratkoz");
+        tab1KiiratkozBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tab1KiiratkozBtnActionPerformed(evt);
+            }
+        });
 
         tab1StatusLbl.setText("jLabel1");
+        tab1StatusLbl.setVisible(false);
 
         javax.swing.GroupLayout tab1PanelLayout = new javax.swing.GroupLayout(tab1Panel);
         tab1Panel.setLayout(tab1PanelLayout);
@@ -122,7 +135,7 @@ public class KonyvtarPanel extends javax.swing.JPanel {
                 .addContainerGap(93, Short.MAX_VALUE))
         );
 
-        konyvtarasTabbedPane.addTab("tab1", tab1Panel);
+        konyvtarasTabbedPane.addTab("Olvasók", tab1Panel);
 
         tab2KonyvtarLbl.setText("Könyvtárak");
 
@@ -197,7 +210,7 @@ public class KonyvtarPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        konyvtarasTabbedPane.addTab("tab2", tab2Panel);
+        konyvtarasTabbedPane.addTab("Működtetés", tab2Panel);
 
         tab3KimutatasLbl.setText("Kimutatás");
 
@@ -237,7 +250,20 @@ public class KonyvtarPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        konyvtarasTabbedPane.addTab("tab3", tab3Panel);
+        konyvtarasTabbedPane.addTab("Kimutatás", tab3Panel);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 396, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 301, Short.MAX_VALUE)
+        );
+
+        konyvtarasTabbedPane.addTab("Könyv vásárlás", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -251,8 +277,35 @@ public class KonyvtarPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tab1BeiratkozBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab1BeiratkozBtnActionPerformed
+        if (!tab1KonyvtarLst.isSelectionEmpty()) {
+            Konyvtar konyvtar = (VarosiKonyvtar) tab1KonyvtarLst.getSelectedValue();
+            konyvtar.beiratkoz();
+            tab1StatusLbl.setText("Sikeres beiratkozás. Olvasók száma: " + konyvtar.getOlvasoSzam());
+            tab1StatusLbl.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Nem választott ki senkit.");
+        }
+    }//GEN-LAST:event_tab1BeiratkozBtnActionPerformed
+
+    private void tab1KiiratkozBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab1KiiratkozBtnActionPerformed
+        if (!tab1KonyvtarLst.isSelectionEmpty()) {
+            Konyvtar konyvtar = (VarosiKonyvtar) tab1KonyvtarLst.getSelectedValue();
+            boolean sikeres = konyvtar.kiiratkoz();
+            if (sikeres) {
+                tab1StatusLbl.setText("Sikeres kiiratkozás. Olvasók száma: " + konyvtar.getOlvasoSzam());
+                tab1StatusLbl.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Nincs olvasója a könyvtárnak.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Nem választott ki senkit.");
+        }
+    }//GEN-LAST:event_tab1KiiratkozBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList jList1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -296,20 +349,18 @@ public class KonyvtarPanel extends javax.swing.JPanel {
         String[] adatok = sor.split(";");
         Konyvtar konyvtar;
         if (adatok[3].isEmpty()) {
-            konyvtar = new VarosiKonyvtar(adatok[0], adatok[1], Integer.parseInt(adatok[2]), konyvSzamGen(), VarosiKonyvtar.getKonyvKeret());
+            konyvtar = new VarosiKonyvtar(adatok[0], adatok[1], olvasoSzamGen(), Integer.parseInt(adatok[2]), VarosiKonyvtar.getKonyvKeret());
         } else {
-            konyvtar = new EgyetemiKonyvtar(adatok[0], adatok[1], Integer.parseInt(adatok[2]), konyvSzamGen(), VarosiKonyvtar.getKonyvKeret(), adatok[3], EgyetemiKonyvtar.getFejkvotaSzorzo());
+            konyvtar = new EgyetemiKonyvtar(adatok[0], adatok[1], olvasoSzamGen(), Integer.parseInt(adatok[2]), VarosiKonyvtar.getKonyvKeret(), adatok[3], EgyetemiKonyvtar.getFejkvotaSzorzo());
         }
         konyvtarModel.addElement(konyvtar);
     }
 
-    public int konyvSzamGen() {
-        int randomKonyvSzam = (int) (Math.random() * 14000) + 1000;
-        return randomKonyvSzam;
-    }
+    public int olvasoSzamGen() {
+        int random = (int) (Math.random() * 4000) + 1000;
+        for (int i = 0; i < random; i++) {
 
-    public int konyvKeretBeallit() {
+        }
         return 0;
     }
-
 }
