@@ -5,25 +5,24 @@
  */
 package vezerles;
 
-import alaposztalyok.EgyetemiKonyvtar;
-import alaposztalyok.VarosiKonyvtar;
-import feluletek.KonyvtarPanel;
+import alaposztalyok.Bankkartya;
+import alaposztalyok.Hitelkartya;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Sandor
  */
-public class KonyvtarasFrame extends javax.swing.JFrame {
+public class BankkartyaFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form KonyvtarasFrame
+     * Creates new form BankkartyaFrame
      */
-    private final int szelesseg = 600;
-    private final int magassag = 500;
-    private final String cim = "Könyvtár";
+    private final int szelesseg = 400;
+    private final int magassag = 300;
+    private final String cim = "Bankkártyás Feladat";
 
-    public KonyvtarasFrame() {
+    public BankkartyaFrame() {
         initComponents();
         this.setSize(szelesseg, magassag);
         this.setTitle(cim);
@@ -39,7 +38,7 @@ public class KonyvtarasFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        konyvtarPanel1 = new feluletek.KonyvtarPanel();
+        bankkartyaPanel1 = new feluletek.BankkartyaPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,15 +46,15 @@ public class KonyvtarasFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(konyvtarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(bankkartyaPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(konyvtarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(bankkartyaPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -78,20 +77,20 @@ public class KonyvtarasFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(KonyvtarasFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BankkartyaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(KonyvtarasFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BankkartyaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(KonyvtarasFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BankkartyaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(KonyvtarasFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BankkartyaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                KonyvtarasFrame frame = new KonyvtarasFrame();
+                BankkartyaFrame frame = new BankkartyaFrame();
                 frame.setVisible(true);
                 frame.vezerel();
             }
@@ -99,21 +98,11 @@ public class KonyvtarasFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private feluletek.KonyvtarPanel konyvtarPanel1;
+    private feluletek.BankkartyaPanel bankkartyaPanel1;
     // End of variables declaration//GEN-END:variables
 
     private void vezerel() {
-        try {
-            adatBeallitas();
-            konyvtarPanel1.beolvas();
-            konyvtarPanel1.konyvBeolvas();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Fájlkezelési hiba.");
-        }
-    }
-
-    private void adatBeallitas() {
-        EgyetemiKonyvtar.setFejkvotaSzorzo(2);
-        VarosiKonyvtar.setDefaultKonyvKeret(10000);
+        Bankkartya.setLIMIT(15000);
+        new Vezerles().start();
     }
 }

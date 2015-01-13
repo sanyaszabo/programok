@@ -72,10 +72,14 @@ public class VarosiKonyvtar implements Konyvtar {
         osszKonyvKeret = osszKonyvKeret + finOsszeg;
     }
 
+    @Override
     public boolean vasarol(int konyvAr) {
+        int vegosszeg;
         if (getOsszKonyvKeret() < konyvAr) {
             return false;
         }
+        vegosszeg = getOsszKonyvKeret() - konyvAr;
+        setOsszKonyvKeret(vegosszeg);
         return true;
     }
 

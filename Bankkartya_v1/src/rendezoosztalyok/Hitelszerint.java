@@ -3,22 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rendezoosztaly;
+package rendezoosztalyok;
 
-import alaposztalyok.Konyvtar;
+import alaposztalyok.Hitelkartya;
 import java.util.Comparator;
 
 /**
  *
  * @author Sandor
  */
-public class OlvasoSzerint implements Comparator<Konyvtar> {
+public class Hitelszerint implements Comparator<Hitelkartya> {
 
     @Override
-    public int compare(Konyvtar k1, Konyvtar k2) {
-        final Integer k1I = k1.getOlvasoSzam();
-        final Integer k2I = k2.getOlvasoSzam();
+    public int compare(Hitelkartya k1, Hitelkartya k2) {
+        final Integer k1I = k1.getHiteltartozas();
+        final Integer k2I = k2.getHiteltartozas();
         return k2I.compareTo(k1I);
     }
-
 }

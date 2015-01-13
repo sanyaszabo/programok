@@ -13,12 +13,13 @@ import alaposztalyok.Konyvtar;
 import alaposztalyok.VarosiKonyvtar;
 import alaposztalyok.EgyetemiKonyvtar;
 import alaposztalyok.Konyv;
+import rendezoosztaly.OlvasoSzerint;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -54,7 +55,6 @@ public class KonyvtarPanel extends javax.swing.JPanel {
         tab1BeiratkozBtn = new javax.swing.JButton();
         tab1KiiratkozBtn = new javax.swing.JButton();
         tab1StatusLbl = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         mukodtetesPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tab2KonyvtarLst = new javax.swing.JList();
@@ -104,13 +104,6 @@ public class KonyvtarPanel extends javax.swing.JPanel {
         tab1StatusLbl.setText("tab2KonyvtarLbl");
         tab1StatusLbl.setVisible(false);
 
-        jButton1.setText("Teszt");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout tab1PanelLayout = new javax.swing.GroupLayout(tab1Panel);
         tab1Panel.setLayout(tab1PanelLayout);
         tab1PanelLayout.setHorizontalGroup(
@@ -124,12 +117,10 @@ public class KonyvtarPanel extends javax.swing.JPanel {
                         .addGap(132, 132, 132)
                         .addComponent(tab1KonyvtarLbl)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
-                .addGroup(tab1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addGroup(tab1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(tab1BeiratkozBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                        .addComponent(tab1KiiratkozBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tab1StatusLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(tab1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tab1BeiratkozBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                    .addComponent(tab1KiiratkozBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tab1StatusLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(77, 77, 77))
         );
         tab1PanelLayout.setVerticalGroup(
@@ -137,10 +128,8 @@ public class KonyvtarPanel extends javax.swing.JPanel {
             .addGroup(tab1PanelLayout.createSequentialGroup()
                 .addGroup(tab1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tab1PanelLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(tab1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tab1KonyvtarLbl)
-                            .addComponent(jButton1))
+                        .addGap(39, 39, 39)
+                        .addComponent(tab1KonyvtarLbl)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(tab1PanelLayout.createSequentialGroup()
@@ -150,7 +139,7 @@ public class KonyvtarPanel extends javax.swing.JPanel {
                         .addComponent(tab1KiiratkozBtn)
                         .addGap(44, 44, 44)
                         .addComponent(tab1StatusLbl)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         konyvtarTabbedPane.addTab("Beiratkozas", tab1Panel);
@@ -446,11 +435,13 @@ public class KonyvtarPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_tab2LeggazdagabbakBtnActionPerformed
 
     private void tab3GeneralBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab3GeneralBtnActionPerformed
-        int n = this.tablaModell.getRowCount();
-        for (int i = n - 1; i >= 0; i--) {
-            this.tablaModell.removeRow(i);
+        int count = tablaModell.getRowCount();
+        List<Konyvtar> rendezolista = new ArrayList<>(konyvtarak);
+        Collections.sort(rendezolista, new OlvasoSzerint());
+        for (int i = 0; i < count; i++) {
+            tablaModell.removeRow(i);
         }
-        for (Konyvtar konyvtar : konyvtarak) {
+        for (Konyvtar konyvtar : rendezolista) {
             if (konyvtar instanceof EgyetemiKonyvtar) {
                 EgyetemiKonyvtar egyetemi = (EgyetemiKonyvtar) konyvtar;
                 Object[] tablaSor = {konyvtar.getKonyvtarnev(), konyvtar.getVaros(), egyetemi.getEgyetem(), konyvtar.getOlvasoSzam()};
@@ -464,27 +455,26 @@ public class KonyvtarPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_tab3GeneralBtnActionPerformed
 
     private void tab4VasarolBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab4VasarolBtnActionPerformed
-        if (!tab4KonyvtarLst.isSelectionEmpty() || !tab4KonyvLst.isSelectionEmpty()) {
-            Konyvtar konyvtar = (Konyvtar) tab4KonyvtarLst.getSelectedValue();
-            Konyv konyv = (Konyv) tab4KonyvLst.getSelectedValue();
-            boolean sikeres = konyvtar.vasarol(konyv.getAr());
-            if (sikeres) {
-                tab4StatusLbl.setText("Sikeres vásárlás. Új egyenleg: " + konyvtar.getOsszKonyvKeret());
-                tab4StatusLbl.setVisible(true);
+        if (!tab4KonyvtarLst.isSelectionEmpty()) {
+            if (!tab4KonyvLst.isSelectionEmpty()) {
+                Konyvtar konyvtar = (Konyvtar) tab4KonyvtarLst.getSelectedValue();
+                Konyv konyv = (Konyv) tab4KonyvLst.getSelectedValue();
+                boolean sikeres = konyvtar.vasarol(konyv.getAr());
+                if (sikeres) {
+                    tab4StatusLbl.setText("Sikeres vásárlás. Új egyenleg: " + konyvtar.getOsszKonyvKeret());
+                    tab4StatusLbl.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Nincs megfelelő keret a vásárláshoz.");
+                }
             } else {
-                JOptionPane.showMessageDialog(this, "Nincs megfelelő keret a vásárláshoz.");
+                JOptionPane.showMessageDialog(this, "Nem választott ki könyvet");
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Nem választott ki könyvtárat, vagy könyvet.");
+            JOptionPane.showMessageDialog(this, "Nem választott ki könyvtárat.");
         }
     }//GEN-LAST:event_tab4VasarolBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ellenoriz();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -552,11 +542,6 @@ public class KonyvtarPanel extends javax.swing.JPanel {
         }
         konyvtarak.add(konyvtar);
         konyvtarModel.addElement(konyvtar);
-        System.out.println(konyvtarModel);
-    }
-
-    public void ellenoriz() {
-        System.out.println(konyvtarModel);
     }
 
     public void konyvBeolvas() throws Exception {
@@ -581,7 +566,7 @@ public class KonyvtarPanel extends javax.swing.JPanel {
     }
 
     public int olvasoSzamGen() {
-        int random = (int) (Math.random() * 4000) + 1000;
+        int random = (int) (Math.random() * 1900) + 100;
         return random;
     }
 
