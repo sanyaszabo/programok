@@ -12,11 +12,13 @@ package feluletek;
 import alaposztalyok.Konyvtar;
 import alaposztalyok.VarosiKonyvtar;
 import alaposztalyok.EgyetemiKonyvtar;
+import alaposztalyok.Konyv;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -24,6 +26,7 @@ public class KonyvtarPanel extends javax.swing.JPanel {
 
     private final static String CHAR_CODE = "UTF-8";
     private DefaultListModel<Konyvtar> konyvtarModel = new DefaultListModel<>();
+    private DefaultListModel<Konyv> konyvModel = new DefaultListModel<>();
     private DefaultListModel<Konyvtar> gazdagKonyvtarak = new DefaultListModel<>();
     private static List<Konyvtar> konyvtarak = new ArrayList<>();
     private DefaultTableModel tablaModell;
@@ -35,6 +38,8 @@ public class KonyvtarPanel extends javax.swing.JPanel {
         tab2LeggazdagabbLst.setModel(gazdagKonyvtarak);
         tab3KimutatasTbl.setShowGrid(true);
         tablaModell = (DefaultTableModel) tab3KimutatasTbl.getModel();
+        tab4KonyvtarLst.setModel(konyvtarModel);
+        tab4KonyvLst.setModel(konyvModel);
     }
 
     @SuppressWarnings("unchecked")
@@ -49,6 +54,7 @@ public class KonyvtarPanel extends javax.swing.JPanel {
         tab1BeiratkozBtn = new javax.swing.JButton();
         tab1KiiratkozBtn = new javax.swing.JButton();
         tab1StatusLbl = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         mukodtetesPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tab2KonyvtarLst = new javax.swing.JList();
@@ -64,6 +70,15 @@ public class KonyvtarPanel extends javax.swing.JPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         tab3KimutatasTbl = new javax.swing.JTable();
         tab3GeneralBtn = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        tab4KonyvtarLbl = new javax.swing.JLabel();
+        tab4KonyvLbl = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tab4KonyvtarLst = new javax.swing.JList();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tab4KonyvLst = new javax.swing.JList();
+        tab4VasarolBtn = new javax.swing.JButton();
+        tab4StatusLbl = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(600, 400));
 
@@ -89,31 +104,43 @@ public class KonyvtarPanel extends javax.swing.JPanel {
         tab1StatusLbl.setText("tab2KonyvtarLbl");
         tab1StatusLbl.setVisible(false);
 
+        jButton1.setText("Teszt");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout tab1PanelLayout = new javax.swing.GroupLayout(tab1Panel);
         tab1Panel.setLayout(tab1PanelLayout);
         tab1PanelLayout.setHorizontalGroup(
             tab1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tab1PanelLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tab1PanelLayout.createSequentialGroup()
+                .addGroup(tab1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tab1PanelLayout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tab1PanelLayout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addComponent(tab1KonyvtarLbl)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
-                .addGroup(tab1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tab1BeiratkozBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                    .addComponent(tab1KiiratkozBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tab1StatusLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(tab1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addGroup(tab1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(tab1BeiratkozBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                        .addComponent(tab1KiiratkozBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tab1StatusLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(77, 77, 77))
-            .addGroup(tab1PanelLayout.createSequentialGroup()
-                .addGap(132, 132, 132)
-                .addComponent(tab1KonyvtarLbl)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         tab1PanelLayout.setVerticalGroup(
             tab1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tab1PanelLayout.createSequentialGroup()
                 .addGroup(tab1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tab1PanelLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(tab1KonyvtarLbl)
+                        .addGap(35, 35, 35)
+                        .addGroup(tab1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tab1KonyvtarLbl)
+                            .addComponent(jButton1))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(tab1PanelLayout.createSequentialGroup()
@@ -123,7 +150,7 @@ public class KonyvtarPanel extends javax.swing.JPanel {
                         .addComponent(tab1KiiratkozBtn)
                         .addGap(44, 44, 44)
                         .addComponent(tab1StatusLbl)))
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         konyvtarTabbedPane.addTab("Beiratkozas", tab1Panel);
@@ -279,6 +306,72 @@ public class KonyvtarPanel extends javax.swing.JPanel {
 
         konyvtarTabbedPane.addTab("Kimutatás", kimutatasPanel);
 
+        tab4KonyvtarLbl.setText("Könyvtár");
+
+        tab4KonyvLbl.setText("Könyv");
+
+        tab4KonyvtarLst.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane5.setViewportView(tab4KonyvtarLst);
+
+        tab4KonyvLst.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane6.setViewportView(tab4KonyvLst);
+
+        tab4VasarolBtn.setText("Vásárol");
+        tab4VasarolBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tab4VasarolBtnActionPerformed(evt);
+            }
+        });
+
+        tab4StatusLbl.setText("Status");
+        tab4StatusLbl.setVisible(false);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(tab4KonyvtarLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tab4KonyvLbl)
+                .addGap(168, 168, 168))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(77, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(77, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(263, 263, 263)
+                        .addComponent(tab4VasarolBtn))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(280, 280, 280)
+                        .addComponent(tab4StatusLbl)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tab4KonyvtarLbl)
+                    .addComponent(tab4KonyvLbl))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6))
+                .addGap(18, 18, 18)
+                .addComponent(tab4VasarolBtn)
+                .addGap(34, 34, 34)
+                .addComponent(tab4StatusLbl)
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+
+        konyvtarTabbedPane.addTab("Vásárlás", jPanel1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -324,7 +417,9 @@ public class KonyvtarPanel extends javax.swing.JPanel {
             int finOsszeg = finOsszegGen();
             konyvtar.finansziroz(finOsszeg);
             teljesOsszeg += konyvtar.getOsszKonyvKeret();
-            //TODO: Egyetemi költséget elkészíteni.
+            if (konyvtar instanceof EgyetemiKonyvtar) {
+                egyetemiOsszeg += konyvtar.getOsszKonyvKeret();
+            }
         }
         tab2TeljesKtsgLbl.setText("A konyvtarak teljes koltsegvetese: " + teljesOsszeg + " HUF");
         tab2TeljesKtsgLbl.setVisible(true);
@@ -345,7 +440,6 @@ public class KonyvtarPanel extends javax.swing.JPanel {
         }
         for (Konyvtar konyvtar2 : konyvtarak) {
             if (konyvtar2.getOsszKonyvKeret() == ujmax) {
-                System.out.println(konyvtar2);
                 gazdagKonyvtarak.addElement(konyvtar2);
             }
         }
@@ -357,16 +451,47 @@ public class KonyvtarPanel extends javax.swing.JPanel {
             this.tablaModell.removeRow(i);
         }
         for (Konyvtar konyvtar : konyvtarak) {
-            Object[] tablaSor = {konyvtar.getKonyvtarnev(), konyvtar.getVaros(), ((EgyetemiKonyvtar) konyvtar).getEgyetem(), konyvtar.getOlvasoSzam()};
-            this.tablaModell.addRow(tablaSor);
+            if (konyvtar instanceof EgyetemiKonyvtar) {
+                EgyetemiKonyvtar egyetemi = (EgyetemiKonyvtar) konyvtar;
+                Object[] tablaSor = {konyvtar.getKonyvtarnev(), konyvtar.getVaros(), egyetemi.getEgyetem(), konyvtar.getOlvasoSzam()};
+                this.tablaModell.addRow(tablaSor);
+
+            } else {
+                Object[] tablaSor = {konyvtar.getKonyvtarnev(), konyvtar.getVaros(), "", konyvtar.getOlvasoSzam()};
+                this.tablaModell.addRow(tablaSor);
+            }
         }
     }//GEN-LAST:event_tab3GeneralBtnActionPerformed
 
+    private void tab4VasarolBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tab4VasarolBtnActionPerformed
+        if (!tab4KonyvtarLst.isSelectionEmpty() || !tab4KonyvLst.isSelectionEmpty()) {
+            Konyvtar konyvtar = (Konyvtar) tab4KonyvtarLst.getSelectedValue();
+            Konyv konyv = (Konyv) tab4KonyvLst.getSelectedValue();
+            boolean sikeres = konyvtar.vasarol(konyv.getAr());
+            if (sikeres) {
+                tab4StatusLbl.setText("Sikeres vásárlás. Új egyenleg: " + konyvtar.getOsszKonyvKeret());
+                tab4StatusLbl.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Nincs megfelelő keret a vásárláshoz.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Nem választott ki könyvtárat, vagy könyvet.");
+        }
+    }//GEN-LAST:event_tab4VasarolBtnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ellenoriz();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JPanel kimutatasPanel;
     private javax.swing.JTabbedPane konyvtarTabbedPane;
     private javax.swing.JPanel mukodtetesPanel;
@@ -386,6 +511,12 @@ public class KonyvtarPanel extends javax.swing.JPanel {
     private javax.swing.JButton tab3GeneralBtn;
     private javax.swing.JLabel tab3KimutatasLbl;
     private javax.swing.JTable tab3KimutatasTbl;
+    private javax.swing.JLabel tab4KonyvLbl;
+    private javax.swing.JList tab4KonyvLst;
+    private javax.swing.JLabel tab4KonyvtarLbl;
+    private javax.swing.JList tab4KonyvtarLst;
+    private javax.swing.JLabel tab4StatusLbl;
+    private javax.swing.JButton tab4VasarolBtn;
     // End of variables declaration//GEN-END:variables
 
     public void beolvas() throws Exception {
@@ -421,6 +552,32 @@ public class KonyvtarPanel extends javax.swing.JPanel {
         }
         konyvtarak.add(konyvtar);
         konyvtarModel.addElement(konyvtar);
+        System.out.println(konyvtarModel);
+    }
+
+    public void ellenoriz() {
+        System.out.println(konyvtarModel);
+    }
+
+    public void konyvBeolvas() throws Exception {
+        InputStream ins = this.getClass().getResourceAsStream("/adatok/konyvek.txt");
+        konyvFajlbol(ins);
+    }
+
+    private void konyvFajlbol(InputStream ins) {
+        Scanner fajlScanner = new Scanner(ins, CHAR_CODE);
+        String sor;
+        while (fajlScanner.hasNextLine()) {
+            sor = fajlScanner.nextLine();
+            konyvFeldolgoz(sor);
+        }
+    }
+
+    private void konyvFeldolgoz(String sor) {
+        String[] adatok = sor.split(";");
+        Konyv konyv;
+        konyv = new Konyv(adatok[0], adatok[1], Integer.parseInt(adatok[2]));
+        konyvModel.addElement(konyv);
     }
 
     public int olvasoSzamGen() {

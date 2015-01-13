@@ -1,0 +1,5 @@
+Nev1;Cim1;5000;
+Nev2;Cim2;3000;
+Nev3;Cim3;6000;
+Nev4;Cim4;1000;
+Nev5;Cim5;9000;

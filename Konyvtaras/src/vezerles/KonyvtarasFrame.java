@@ -106,6 +106,7 @@ public class KonyvtarasFrame extends javax.swing.JFrame {
         try {
             adatBeallitas();
             new KonyvtarPanel().beolvas();
+            new KonyvtarPanel().konyvBeolvas();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Fájlkezelési hiba.");
         }

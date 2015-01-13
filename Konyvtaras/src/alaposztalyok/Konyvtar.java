@@ -15,6 +15,8 @@ public interface Konyvtar {
 
     public boolean kiiratkoz();
 
+    public boolean vasarol(int konyvAr);
+
     public int getOlvasoSzam();
 
     public String getKonyvtarnev();
