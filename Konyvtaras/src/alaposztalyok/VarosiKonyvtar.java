@@ -15,30 +15,61 @@ public class VarosiKonyvtar implements Konyvtar {
     private final String varos;
     private int olvasoSzam;
     private int konyvSzam;
-    private static int konyvKeret;
+    private static int defaultKonyvKeret;
+    private int osszKonyvKeret;
 
-    public VarosiKonyvtar(String konyvtarnev, String varos, int olvasoSzam, int konyvSzam, int konyvKeret) {
+    public VarosiKonyvtar(String konyvtarnev, String varos, int konyvSzam, int osszKonyvKeret) {
         this.konyvtarnev = konyvtarnev;
         this.varos = varos;
-        this.olvasoSzam = olvasoSzam;
         this.konyvSzam = konyvSzam;
-        this.konyvKeret = konyvKeret;
+        this.osszKonyvKeret = osszKonyvKeret;
     }
 
-    public static void setKonyvKeret(int konyvKeret) {
-        VarosiKonyvtar.konyvKeret = konyvKeret;
+    @Override
+    public String getKonyvtarnev() {
+        return konyvtarnev;
     }
 
+    @Override
+    public String getVaros() {
+        return varos;
+    }
+
+    @Override
+    public int getKonyvSzam() {
+        return konyvSzam;
+    }
+
+    public static void setDefaultKonyvKeret(int defaultKonyvKeret) {
+        VarosiKonyvtar.defaultKonyvKeret = defaultKonyvKeret;
+    }
+
+    @Override
+    public String toString() {
+        return "" + konyvtarnev + "," + varos + "";
+    }
+
+    @Override
+    public int getOsszKonyvKeret() {
+        return osszKonyvKeret;
+    }
+
+    public void setOsszKonyvKeret(int osszKonyvKeret) {
+        this.osszKonyvKeret = osszKonyvKeret;
+    }
+
+    @Override
     public int getOlvasoSzam() {
         return olvasoSzam;
     }
 
-    public static int getKonyvKeret() {
-        return konyvKeret;
+    public static int getDefaultKonyvKeret() {
+        return defaultKonyvKeret;
     }
 
-    public void finansziroz() {
-
+    @Override
+    public void finansziroz(int finOsszeg) {
+        osszKonyvKeret = osszKonyvKeret + finOsszeg;
     }
 
     public void vasarol() {
@@ -58,4 +89,5 @@ public class VarosiKonyvtar implements Konyvtar {
         olvasoSzam = olvasoSzam - 1;
         return true;
     }
+
 }

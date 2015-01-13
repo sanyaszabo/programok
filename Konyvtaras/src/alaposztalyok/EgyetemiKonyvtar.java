@@ -14,10 +14,18 @@ public class EgyetemiKonyvtar extends VarosiKonyvtar implements Konyvtar {
     private final String egyetem;
     private static int fejkvotaSzorzo;
 
-    public EgyetemiKonyvtar(String konyvtarnev, String varos, int olvasoSzam, int konyvSzam, int konyvKeret, String egyetem, int fejkvota) {
-        super(konyvtarnev, varos, olvasoSzam, konyvSzam, konyvKeret);
+    public EgyetemiKonyvtar(String konyvtarnev, String varos, int konyvSzam, int osszKonyvKeret, String egyetem) {
+        super(konyvtarnev, varos, konyvSzam, osszKonyvKeret);
         this.egyetem = egyetem;
-        this.fejkvotaSzorzo = fejkvotaSzorzo;
+    }
+
+    @Override
+    public String toString() {
+        return getKonyvtarnev() + "," + getVaros() + "," + egyetem;
+    }
+
+    public String getEgyetem() {
+        return egyetem;
     }
 
     public static void setFejkvotaSzorzo(int fejkvotaSzorzo) {
@@ -26,6 +34,13 @@ public class EgyetemiKonyvtar extends VarosiKonyvtar implements Konyvtar {
 
     public static int getFejkvotaSzorzo() {
         return fejkvotaSzorzo;
+    }
+
+    @Override
+    public void finansziroz(int finOsszeg) {
+        int konyvkeret;
+        konyvkeret = getOsszKonyvKeret() + finOsszeg + (fejkvotaSzorzo * getOlvasoSzam());
+        setOsszKonyvKeret(konyvkeret);
     }
 
 }

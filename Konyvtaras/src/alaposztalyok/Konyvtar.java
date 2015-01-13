@@ -16,4 +16,15 @@ public interface Konyvtar {
     public boolean kiiratkoz();
 
     public int getOlvasoSzam();
+
+    public String getKonyvtarnev();
+
+    public String getVaros();
+
+    public int getKonyvSzam();
+
+    public int getOsszKonyvKeret();
+
+    public void finansziroz(int finOsszeg);
+
 }

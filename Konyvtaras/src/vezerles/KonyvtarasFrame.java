@@ -19,8 +19,15 @@ public class KonyvtarasFrame extends javax.swing.JFrame {
     /**
      * Creates new form KonyvtarasFrame
      */
+    private final int szelesseg = 600;
+    private final int magassag = 500;
+    private final String cim = "Könyvtár";
+
     public KonyvtarasFrame() {
         initComponents();
+        this.setSize(szelesseg, magassag);
+        this.setTitle(cim);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -35,17 +42,20 @@ public class KonyvtarasFrame extends javax.swing.JFrame {
         konyvtarPanel1 = new feluletek.KonyvtarPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(400, 300));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(konyvtarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(konyvtarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(konyvtarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(konyvtarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -102,7 +112,7 @@ public class KonyvtarasFrame extends javax.swing.JFrame {
     }
 
     private void adatBeallitas() {
-        EgyetemiKonyvtar.setFejkvotaSzorzo(1500);
-        VarosiKonyvtar.setKonyvKeret(10000);
+        EgyetemiKonyvtar.setFejkvotaSzorzo(2);
+        VarosiKonyvtar.setDefaultKonyvKeret(10000);
     }
 }
