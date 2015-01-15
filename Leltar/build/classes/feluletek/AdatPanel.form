@@ -26,8 +26,6 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                       <Component id="rogzitBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                      <Component id="modositBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="visszalepBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
@@ -157,10 +155,9 @@
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="rogzitBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="modositBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="visszalepBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="40" max="32767" attributes="0"/>
+              <EmptySpace pref="240" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -354,15 +351,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Trebuchet MS" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="R&#xf6;gz&#xed;t!"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="modositBtn">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Trebuchet MS" size="14" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="M&#xf3;dos&#xed;t!"/>
+        <Property name="text" type="java.lang.String" value="Ment&#xe9;s"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="visszalepBtn">

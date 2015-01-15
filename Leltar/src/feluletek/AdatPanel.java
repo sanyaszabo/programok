@@ -5,15 +5,19 @@
  */
 package feluletek;
 
+import alaposztalyok.Adat;
+import alaposztalyok.FajlKezelo;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import vezerlo.AdatFrame;
+
 /**
  *
  * @author Sandor
  */
 public class AdatPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form AdatPanel
-     */
     public AdatPanel() {
         initComponents();
     }
@@ -48,7 +52,6 @@ public class AdatPanel extends javax.swing.JPanel {
         epuletCmbBox = new javax.swing.JComboBox();
         statusCmbBox = new javax.swing.JComboBox();
         rogzitBtn = new javax.swing.JButton();
-        modositBtn = new javax.swing.JButton();
         visszalepBtn = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(500, 500));
@@ -109,10 +112,7 @@ public class AdatPanel extends javax.swing.JPanel {
         statusCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Válasszon", "Aktív", "Inaktív", "Selejt" }));
 
         rogzitBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        rogzitBtn.setText("Rögzít!");
-
-        modositBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        modositBtn.setText("Módosít!");
+        rogzitBtn.setText("Mentés");
 
         visszalepBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         visszalepBtn.setText("Visszalép");
@@ -126,8 +126,6 @@ public class AdatPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(65, 65, 65)
                         .addComponent(rogzitBtn)
-                        .addGap(65, 65, 65)
-                        .addComponent(modositBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(visszalepBtn)
                         .addGap(11, 11, 11))
@@ -226,9 +224,8 @@ public class AdatPanel extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rogzitBtn)
-                    .addComponent(modositBtn)
                     .addComponent(visszalepBtn))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(240, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -245,7 +242,6 @@ public class AdatPanel extends javax.swing.JPanel {
     private javax.swing.JTextField gyartoTextField;
     private javax.swing.JLabel lKLbl;
     private javax.swing.JLabel leltarLbl;
-    private javax.swing.JButton modositBtn;
     private javax.swing.JComboBox osztalyCmbBox;
     private javax.swing.JLabel osztalyLbl;
     private javax.swing.JButton rogzitBtn;
@@ -257,4 +253,9 @@ public class AdatPanel extends javax.swing.JPanel {
     private javax.swing.JTextField tipusTextField;
     private javax.swing.JButton visszalepBtn;
     // End of variables declaration//GEN-END:variables
+
+    public void adatBevitel() {
+
+    }
+
 }

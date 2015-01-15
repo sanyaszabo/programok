@@ -6,6 +6,7 @@
 package vezerlo;
 
 import alaposztalyok.FajlKezelo;
+import java.io.IOException;
 
 /**
  *

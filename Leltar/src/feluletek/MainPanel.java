@@ -5,17 +5,23 @@
  */
 package feluletek;
 
+import alaposztalyok.Adat;
+import alaposztalyok.FajlKezelo;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author Sandor
  */
 public class MainPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form MainPanel
-     */
+    private DefaultListModel<Adat> adatLstModel = new DefaultListModel<>();
+
     public MainPanel() {
         initComponents();
+        modellBetoltes();
     }
 
     /**
@@ -70,6 +76,11 @@ public class MainPanel extends javax.swing.JPanel {
 
         ujAdatBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         ujAdatBtn.setText("Új eszköz felvitele");
+        ujAdatBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ujAdatBtnActionPerformed(evt);
+            }
+        });
 
         adatModositoBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         adatModositoBtn.setText("Eszköz módosítása");
@@ -272,6 +283,10 @@ public class MainPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ujAdatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ujAdatBtnActionPerformed
+        eszkozBevitel();
+    }//GEN-LAST:event_ujAdatBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adatModositoBtn;
     private javax.swing.JLabel adatModositoLbl;
@@ -302,4 +317,17 @@ public class MainPanel extends javax.swing.JPanel {
     private javax.swing.JList szuroLst;
     private javax.swing.JButton ujAdatBtn;
     // End of variables declaration//GEN-END:variables
+
+    // modellBetoltes() adatLstModel-be berakja az adatokat.
+    private void modellBetoltes() {
+        mainLst.setModel(adatLstModel);
+        List<Adat> feltoltoLista = new ArrayList<>(FajlKezelo.listaLeker());
+        for (Adat adat : feltoltoLista) {
+            adatLstModel.addElement(adat);
+        }
+    }
+
+    private void eszkozBevitel() {
+
+    }
 }
