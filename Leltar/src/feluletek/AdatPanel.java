@@ -242,11 +242,9 @@ public class AdatPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rogzitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rogzitBtnActionPerformed
-        try {
-            mentes();
-        } catch (IOException ex) {
-            Logger.getLogger(AdatPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+        mentes();
+
     }//GEN-LAST:event_rogzitBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -296,7 +294,7 @@ public class AdatPanel extends javax.swing.JPanel {
         felhasznTextField.setText(adat.getFelhasznalo());
     }
 
-    private void mentes() throws IOException {
+    private void mentes() {
         adat.setLeltariKod(adat.getLeltariKod());
         adat.setEszkoz((String) eszkozCmbBox.getSelectedItem());
         adat.setGyarto(gyartoTextField.getText());
