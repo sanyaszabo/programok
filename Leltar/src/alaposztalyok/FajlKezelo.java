@@ -8,17 +8,12 @@ package alaposztalyok;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,16 +30,15 @@ public class FajlKezelo {
     public void adatBeolvas() {
         FileInputStream ins = null;
         try {
-//        InputStream ins = this.getClass().getResourceAsStream(path);
             ins = new FileInputStream(new File(path));
             fajlbol(ins);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(FajlKezelo.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("A fájl nem található!");;
         } finally {
             try {
                 ins.close();
             } catch (IOException ex) {
-                Logger.getLogger(FajlKezelo.class.getName()).log(Level.SEVERE, null, ex);
+                System.err.println("Nem lehet bezárni a fájlt.");
             }
         }
     }
@@ -88,9 +82,6 @@ public class FajlKezelo {
     }
 
     public static void adatModosit(Adat adat) throws IOException {
-        int index = adatLista.indexOf(adat);
-        adatLista.remove(index);
-        adatLista.add(index, adat);
         fajlba();
     }
 
