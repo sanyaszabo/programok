@@ -321,7 +321,7 @@ public class MainPanel extends javax.swing.JPanel {
     // modellBetoltes() adatLstModel-be berakja az adatokat.
     private void modellBetoltes() {
         mainLst.setModel(adatLstModel);
-        List<Adat> feltoltoLista = new ArrayList<>(FajlKezelo.listaLeker());
+        List<Adat> feltoltoLista = new ArrayList<>(FajlKezelo.adatLeker());
         for (Adat adat : feltoltoLista) {
             adatLstModel.addElement(adat);
         }

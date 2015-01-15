@@ -6,6 +6,7 @@
 package feluletek;
 
 import javax.swing.JOptionPane;
+import vezerlo.LoginFrame;
 
 /**
  *
@@ -15,6 +16,7 @@ public class LoginPanel extends javax.swing.JPanel {
 
     private static final String felhasznalonev = "leltar";
     private static final String jelszo = "123";
+    private static LoginFrame parentFrame;
 
     public LoginPanel() {
         initComponents();
@@ -112,13 +114,18 @@ public class LoginPanel extends javax.swing.JPanel {
     private javax.swing.JLabel statusLbl;
     // End of variables declaration//GEN-END:variables
 
+    public static void setLoginFrame(LoginFrame frame) {
+        parentFrame = frame;
+    }
+
     private void bejelentkezes() {
 
         if (felhasznaloTxtField.getText().equals(felhasznalonev)) {
             if (jelszoTxtField.getText().equals(jelszo)) {
                 statusLbl.setVisible(false);
-                //TODO: LoginFrame ablak bezárása!
+                parentFrame.setVisible(false);
                 new vezerlo.MainFrame();
+                parentFrame.dispose();
             } else {
                 statusLbl.setText("Sikertelen bejelentkezés!");
                 statusLbl.setVisible(true);

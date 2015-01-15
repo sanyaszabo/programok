@@ -5,6 +5,8 @@
  */
 package vezerlo;
 
+import feluletek.LoginPanel;
+
 /**
  *
  * @author Sandor
@@ -20,6 +22,7 @@ public class LoginFrame extends javax.swing.JFrame {
         setTitle(ABLAK_CIM);
         initComponents();
         setVisible(true);
+        LoginPanel.setLoginFrame(this);
     }
 
     /**

@@ -48,9 +48,9 @@ public class FajlKezelo {
         adatLista.add(adat);
     }
 
-    public void fajlba() throws IOException {
+    public static void fajlba() throws IOException {
         File f = new File(path);
-        while (f.exists()) {
+        if (f.exists()) {
             f.delete();
         }
         FileWriter writer = new FileWriter(path);
@@ -61,8 +61,24 @@ public class FajlKezelo {
         //TODO: Megcsinálni rendesen!!!
     }
 
-    public static List listaLeker() {
+    public static List adatLeker() {
         return adatLista;
     }
 
+    public static void adatHozzaAd(Adat adat) throws IOException {
+        adatLista.add(adat);
+        fajlba();
+    }
+
+    public static void adatModosit(Adat adat) throws IOException {
+        int index = adatLista.indexOf(adat);
+        adatLista.remove(adat);
+        adatLista.add(adat);
+        fajlba();
+    }
+
+    public static void adatTorles(Adat adat) throws IOException {
+        adatLista.remove(adat);
+        fajlba();
+    }
 }
