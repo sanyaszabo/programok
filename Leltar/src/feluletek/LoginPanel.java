@@ -14,7 +14,7 @@ import vezerlo.LoginFrame;
  */
 public class LoginPanel extends javax.swing.JPanel {
 
-    private static final String felhasznalonev = "leltar";
+    public static final String felhasznalonev = "leltar";
     private static final String jelszo = "123";
     private static LoginFrame parentFrame;
 

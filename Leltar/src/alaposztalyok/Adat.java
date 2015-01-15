@@ -5,6 +5,9 @@
  */
 package alaposztalyok;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author Sandor
@@ -54,6 +57,85 @@ public class Adat {
 
     public int getLeltariKod() {
         return leltariKod;
+    }
+
+    public void setLeltariKod(int leltariKod) {
+        this.leltariKod = leltariKod;
+    }
+
+    public void setEszkoz(String eszkoz) {
+        this.eszkoz = eszkoz;
+    }
+
+    public void setGyarto(String gyarto) {
+        this.gyarto = gyarto;
+    }
+
+    public void setTipus(String tipus) {
+        this.tipus = tipus;
+    }
+
+    public void setGyariSzam(String gyariSzam) {
+        this.gyariSzam = gyariSzam;
+    }
+
+    public void setFelhasznalo(String felhasznalo) {
+        this.felhasznalo = felhasznalo;
+    }
+
+    public void setOsztaly(String osztaly) {
+        this.osztaly = osztaly;
+    }
+
+    public void setEpulet(String epulet) {
+        this.epulet = epulet;
+    }
+
+    public void setSzoba(String szoba) {
+        this.szoba = szoba;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setAdatKezelo(String adatKezelo) {
+        this.adatKezelo = adatKezelo;
+    }
+
+//    public void setDatum(String datum) {
+//        this.datum = datum;
+//    }
+    public void setDatum(Date datum) {
+        this.datum = new SimpleDateFormat("yyyy-MM-dd").format(datum);
+    }
+
+    public String getEszkoz() {
+        return eszkoz;
+    }
+
+    public String getGyarto() {
+        return gyarto;
+    }
+
+    public String getTipus() {
+        return tipus;
+    }
+
+    public String getOsztaly() {
+        return osztaly;
+    }
+
+    public String getEpulet() {
+        return epulet;
+    }
+
+    public String getSzoba() {
+        return szoba;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public String getGyariSzam() {

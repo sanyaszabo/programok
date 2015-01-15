@@ -7,8 +7,12 @@ package feluletek;
 
 import alaposztalyok.Adat;
 import alaposztalyok.FajlKezelo;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import vezerlo.AdatFrame;
 
@@ -17,10 +21,10 @@ import vezerlo.AdatFrame;
  * @author Sandor
  */
 public class AdatPanel extends javax.swing.JPanel {
-    
+
     private AdatFrame parentFrame;
     private Adat adat;
-    
+
     public AdatPanel() {
         initComponents();
     }
@@ -116,6 +120,11 @@ public class AdatPanel extends javax.swing.JPanel {
 
         rogzitBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         rogzitBtn.setText("Mentés");
+        rogzitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rogzitBtnActionPerformed(evt);
+            }
+        });
 
         visszalepBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         visszalepBtn.setText("Visszalép");
@@ -232,6 +241,14 @@ public class AdatPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void rogzitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rogzitBtnActionPerformed
+        try {
+            mentes();
+        } catch (IOException ex) {
+            Logger.getLogger(AdatPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_rogzitBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox epuletCmbBox;
     private javax.swing.JLabel epuletLbl;
@@ -260,14 +277,40 @@ public class AdatPanel extends javax.swing.JPanel {
     public void setAdatFrame(AdatFrame frame) {
         parentFrame = frame;
     }
-    
+
     public void ujAdatBevitel() {
-        
+
     }
-    
+
     public void init(Adat adat) {
         this.adat = adat;
-        leltarLbl.setText("Leltári kód: " + adat.getLeltariKod());
+        lKLbl.setText("Leltári Kód: " + String.valueOf(adat.getLeltariKod()));
+        eszkozCmbBox.setSelectedItem(adat.getEszkoz());
+        gyartoTextField.setText(adat.getGyarto());
+        tipusTextField.setText(adat.getTipus());
+        gySzTextField.setText(adat.getGyariSzam());
+        osztalyCmbBox.setSelectedItem(adat.getOsztaly());
+        epuletCmbBox.setSelectedItem(adat.getEpulet());
+        szobaTextField.setText(adat.getSzoba());
+        statusCmbBox.setSelectedItem(adat.getStatus());
+        felhasznTextField.setText(adat.getFelhasznalo());
     }
-    
+
+    private void mentes() throws IOException {
+        adat.setLeltariKod(adat.getLeltariKod());
+        adat.setEszkoz((String) eszkozCmbBox.getSelectedItem());
+        adat.setGyarto(gyartoTextField.getText());
+        adat.setTipus(tipusTextField.getText());
+        adat.setGyariSzam(gySzTextField.getText());
+        adat.setOsztaly((String) osztalyCmbBox.getSelectedItem());
+        adat.setEpulet((String) epuletCmbBox.getSelectedItem());
+        adat.setSzoba(szobaTextField.getText());
+        adat.setStatus((String) statusCmbBox.getSelectedItem());
+        adat.setFelhasznalo(felhasznTextField.getText());
+        adat.setAdatKezelo(LoginPanel.felhasznalonev);
+        adat.setDatum(new Date());
+        FajlKezelo.adatModosit(adat);
+
+    }
+
 }

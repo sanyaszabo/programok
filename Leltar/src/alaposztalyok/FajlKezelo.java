@@ -6,9 +6,12 @@
 package alaposztalyok;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,12 +29,24 @@ import java.util.Date;
 public class FajlKezelo {
 
     private final static String CHAR_CODE = "UTF-8";
-    private final static String path = "/adatok/adat.dat";
+    private final static String path = "adat.dat"; // az adat a project mappája alatt található
     public static List<Adat> adatLista = new ArrayList<>();
 
     public void adatBeolvas() {
-        InputStream ins = this.getClass().getResourceAsStream(path);
-        fajlbol(ins);
+        FileInputStream ins = null;
+        try {
+//        InputStream ins = this.getClass().getResourceAsStream(path);
+            ins = new FileInputStream(new File(path));
+            fajlbol(ins);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FajlKezelo.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                ins.close();
+            } catch (IOException ex) {
+                Logger.getLogger(FajlKezelo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     private void fajlbol(InputStream ins) {
@@ -53,9 +70,9 @@ public class FajlKezelo {
         if (f.exists()) {
             f.delete();
         }
-        FileWriter writer = new FileWriter(path);
+        PrintWriter writer = new PrintWriter(path, CHAR_CODE);
         for (Adat adat : adatLista) {
-            writer.write(adat.toString());
+            writer.println(adat.toString());
         }
         writer.close();
         //TODO: Megcsinálni rendesen!!!
@@ -72,8 +89,8 @@ public class FajlKezelo {
 
     public static void adatModosit(Adat adat) throws IOException {
         int index = adatLista.indexOf(adat);
-        adatLista.remove(adat);
-        adatLista.add(adat);
+        adatLista.remove(index);
+        adatLista.add(index, adat);
         fajlba();
     }
 
