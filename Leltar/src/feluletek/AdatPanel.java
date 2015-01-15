@@ -7,6 +7,7 @@ package feluletek;
 
 import alaposztalyok.Adat;
 import alaposztalyok.FajlKezelo;
+import feluletek.MainPanel;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;

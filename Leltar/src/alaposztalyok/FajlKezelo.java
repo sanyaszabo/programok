@@ -82,7 +82,7 @@ public class FajlKezelo {
         }
     }
 
-    public static List adatLeker() {
+    public static List<Adat> adatLeker() {
         return adatLista;
     }
 
