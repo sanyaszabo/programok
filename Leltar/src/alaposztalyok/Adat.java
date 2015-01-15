@@ -44,4 +44,24 @@ public class Adat {
         return "" + leltariKod + ";" + eszkoz + ";" + gyarto + ";" + tipus + ";" + gyariSzam + ";" + felhasznalo + ";" + osztaly + ";" + epulet + ";" + szoba + ";" + status + ";" + adatKezelo + ";" + datum + ";";
     }
 
+    public String getFelhasznalo() {
+        return felhasznalo;
+    }
+
+    public String getDatum() {
+        return datum;
+    }
+
+    public int getLeltariKod() {
+        return leltariKod;
+    }
+
+    public String getGyariSzam() {
+        return gyariSzam;
+    }
+
+    public String getAdatKezelo() {
+        return adatKezelo;
+    }
+
 }

@@ -8,8 +8,14 @@ package feluletek;
 import alaposztalyok.Adat;
 import alaposztalyok.FajlKezelo;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import rendezoosztaly.DatumSzerint;
+import rendezoosztaly.FelhasznaloSzerint;
+import vezerlo.AdatFrame;
+import vezerlo.MainFrame;
 
 /**
  *
@@ -18,6 +24,8 @@ import javax.swing.DefaultListModel;
 public class MainPanel extends javax.swing.JPanel {
 
     private DefaultListModel<Adat> adatLstModel = new DefaultListModel<>();
+    private List<Adat> rendezolista = new ArrayList<>(FajlKezelo.adatLeker());
+    public static MainFrame parentFrame;
 
     public MainPanel() {
         initComponents();
@@ -48,19 +56,12 @@ public class MainPanel extends javax.swing.JPanel {
         szurBtn = new javax.swing.JButton();
         keresesLbl = new javax.swing.JLabel();
         keresesLbl1 = new javax.swing.JLabel();
-        keresoFelhasznLbl = new javax.swing.JLabel();
-        keresoGySzLbl = new javax.swing.JLabel();
-        keresoLKLbl1 = new javax.swing.JLabel();
-        keresoAKLbl = new javax.swing.JLabel();
-        keresoDatumLbl = new javax.swing.JLabel();
-        keresoGySzTextField = new javax.swing.JTextField();
-        keresoFelhasznTextField1 = new javax.swing.JTextField();
-        keresoLKTextField = new javax.swing.JTextField();
-        keresoDatumTextField = new javax.swing.JTextField();
-        keresoAKTextField1 = new javax.swing.JTextField();
+        keresoTextField = new javax.swing.JTextField();
         rendezBtn = new javax.swing.JButton();
         rendezesCmbBox = new javax.swing.JComboBox();
         keresBtn = new javax.swing.JButton();
+        helyreallitBtn = new javax.swing.JButton();
+        keresesCmbBox = new javax.swing.JComboBox();
 
         setPreferredSize(new java.awt.Dimension(1000, 650));
 
@@ -75,7 +76,7 @@ public class MainPanel extends javax.swing.JPanel {
         adatModositoLbl.setText("Adatmódosító műveletek");
 
         ujAdatBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        ujAdatBtn.setText("Új eszköz felvitele");
+        ujAdatBtn.setText("Új eszköz felvétele");
         ujAdatBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ujAdatBtnActionPerformed(evt);
@@ -90,6 +91,11 @@ public class MainPanel extends javax.swing.JPanel {
 
         kilepoBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         kilepoBtn.setText("Kilépés");
+        kilepoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kilepoBtnActionPerformed(evt);
+            }
+        });
 
         adatModositoLbl1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         adatModositoLbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -97,6 +103,11 @@ public class MainPanel extends javax.swing.JPanel {
 
         szuresCmbBox.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         szuresCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Válasszon", "Eszköz", "Osztály", "Épület", "Státusz" }));
+        szuresCmbBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                szuresCmbBoxActionPerformed(evt);
+            }
+        });
 
         szuroLst.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         szuroLst.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -113,39 +124,38 @@ public class MainPanel extends javax.swing.JPanel {
         keresesLbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         keresesLbl1.setText("Rendezés");
 
-        keresoFelhasznLbl.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        keresoFelhasznLbl.setText("Felhasználó:");
-
-        keresoGySzLbl.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        keresoGySzLbl.setText("Gyártói szám:");
-
-        keresoLKLbl1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        keresoLKLbl1.setText("Leltári Kód:");
-
-        keresoAKLbl.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        keresoAKLbl.setText("Adatkezelő:");
-
-        keresoDatumLbl.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        keresoDatumLbl.setText("Dátum");
-
-        keresoGySzTextField.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-
-        keresoFelhasznTextField1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-
-        keresoLKTextField.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-
-        keresoDatumTextField.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-
-        keresoAKTextField1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        keresoTextField.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        keresoTextField.setToolTipText("");
 
         rendezBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         rendezBtn.setText("Rendez!");
+        rendezBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rendezBtnActionPerformed(evt);
+            }
+        });
 
         rendezesCmbBox.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         rendezesCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Válasszon", "Név", "Dátum" }));
 
         keresBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         keresBtn.setText("Keres!");
+        keresBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                keresBtnActionPerformed(evt);
+            }
+        });
+
+        helyreallitBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        helyreallitBtn.setText("Helyreállít!");
+        helyreallitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                helyreallitBtnActionPerformed(evt);
+            }
+        });
+
+        keresesCmbBox.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        keresesCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Válasszon", "Felhasználó", "Dátum", "Gyári szám", "Leltári kód", "Adatkezelő" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -169,7 +179,7 @@ public class MainPanel extends javax.swing.JPanel {
                             .addComponent(ujAdatBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(adatModositoBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(adatTorloBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(57, 57, 57)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -177,46 +187,30 @@ public class MainPanel extends javax.swing.JPanel {
                                     .addComponent(szurBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(26, 26, 26)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
+                                        .addGap(58, 58, 58)
+                                        .addComponent(keresBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(59, 59, 59)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(keresoAKLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGap(39, 39, 39)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(keresoGySzLbl)
-                                                        .addComponent(keresoFelhasznLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(keresoLKLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(keresoDatumLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(keresoFelhasznTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                                            .addComponent(keresoGySzTextField)
-                                            .addComponent(keresoLKTextField)
-                                            .addComponent(keresoDatumTextField)
-                                            .addComponent(keresoAKTextField1)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(87, 87, 87)
-                                        .addComponent(keresBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(keresoTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(keresesCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(137, 137, 137)
                                 .addComponent(adatModositoLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(149, 149, 149)
-                                .addComponent(keresesLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(keresesLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(keresesLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(40, 40, 40))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(rendezesCmbBox, 0, 128, Short.MAX_VALUE)
-                                    .addComponent(rendezBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rendezesCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(rendezBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(helyreallitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(30, 30, 30)))))
                 .addContainerGap())
         );
@@ -252,61 +246,90 @@ public class MainPanel extends javax.swing.JPanel {
                                 .addComponent(adatTorloBtn))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(keresoFelhasznLbl)
-                                    .addComponent(keresoFelhasznTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(rendezesCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(7, 7, 7)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(keresoGySzLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(keresoGySzTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(keresoLKLbl1)
-                                            .addComponent(keresoLKTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
-                                        .addComponent(rendezBtn)))
+                                    .addComponent(rendezesCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(keresesCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(keresoAKTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(keresoAKLbl, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(keresoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(3, 3, 3)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(keresoDatumLbl)
-                                    .addComponent(keresoDatumTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
-                        .addComponent(keresBtn)
-                        .addGap(0, 15, Short.MAX_VALUE)))
+                                    .addComponent(rendezBtn)
+                                    .addComponent(keresBtn))))
+                        .addGap(20, 20, 20)
+                        .addComponent(helyreallitBtn)
+                        .addGap(0, 16, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void ujAdatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ujAdatBtnActionPerformed
-        eszkozBevitel();
+        ujAdatBevitel();
     }//GEN-LAST:event_ujAdatBtnActionPerformed
+
+    private void kilepoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kilepoBtnActionPerformed
+        kilepes();
+    }//GEN-LAST:event_kilepoBtnActionPerformed
+
+    private void rendezBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rendezBtnActionPerformed
+        if (rendezesCmbBox.getSelectedIndex() == 1) {
+            felhasznaloSzerintRendez();
+        }
+        if (rendezesCmbBox.getSelectedIndex() == 2) {
+            datumSzerintRendez();
+        }
+    }//GEN-LAST:event_rendezBtnActionPerformed
+
+    private void helyreallitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helyreallitBtnActionPerformed
+        helyreallit();
+        modellBetoltes();
+    }//GEN-LAST:event_helyreallitBtnActionPerformed
+
+    private void keresBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keresBtnActionPerformed
+        if (keresesCmbBox.getSelectedIndex() == 1) {
+            felhasznaloSzerintKeres();
+        }
+        if (keresesCmbBox.getSelectedIndex() == 2) {
+            datumSzerintKeres();
+        }
+        if (keresesCmbBox.getSelectedIndex() == 3) {
+            gyariSzamSzerintKeres();
+        }
+        if (keresesCmbBox.getSelectedIndex() == 4) {
+            leltarikodSzerintKeres();
+        }
+        if (keresesCmbBox.getSelectedIndex() == 5) {
+            adatkezeloSzerintKeres();
+        }
+    }//GEN-LAST:event_keresBtnActionPerformed
+
+    private void szuresCmbBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_szuresCmbBoxActionPerformed
+        if (szuresCmbBox.getSelectedIndex() == 1) {
+            szuroLst.setModel(new javax.swing.AbstractListModel() {
+                String[] strings = {"Monitor", "PC", "Notebook"};
+
+                public int getSize() {
+                    return strings.length;
+                }
+
+                public Object getElementAt(int i) {
+                    return strings[i];
+                }
+            });
+        }
+    }//GEN-LAST:event_szuresCmbBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adatModositoBtn;
     private javax.swing.JLabel adatModositoLbl;
     private javax.swing.JLabel adatModositoLbl1;
     private javax.swing.JButton adatTorloBtn;
+    private javax.swing.JButton helyreallitBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton keresBtn;
+    private javax.swing.JComboBox keresesCmbBox;
     private javax.swing.JLabel keresesLbl;
     private javax.swing.JLabel keresesLbl1;
-    private javax.swing.JLabel keresoAKLbl;
-    private javax.swing.JTextField keresoAKTextField1;
-    private javax.swing.JLabel keresoDatumLbl;
-    private javax.swing.JTextField keresoDatumTextField;
-    private javax.swing.JLabel keresoFelhasznLbl;
-    private javax.swing.JTextField keresoFelhasznTextField1;
-    private javax.swing.JLabel keresoGySzLbl;
-    private javax.swing.JTextField keresoGySzTextField;
-    private javax.swing.JLabel keresoLKLbl1;
-    private javax.swing.JTextField keresoLKTextField;
+    private javax.swing.JTextField keresoTextField;
     private javax.swing.JButton kilepoBtn;
     private javax.swing.JLabel leltarLbl;
     private javax.swing.JList mainLst;
@@ -318,8 +341,13 @@ public class MainPanel extends javax.swing.JPanel {
     private javax.swing.JButton ujAdatBtn;
     // End of variables declaration//GEN-END:variables
 
-    // modellBetoltes() adatLstModel-be berakja az adatokat.
+    public static void setMainFrame(MainFrame frame) {
+        parentFrame = frame;
+    }
+
+// modellBetoltes() adatLstModel-be berakja az adatokat.
     private void modellBetoltes() {
+        adatLstModel.clear();
         mainLst.setModel(adatLstModel);
         List<Adat> feltoltoLista = new ArrayList<>(FajlKezelo.adatLeker());
         for (Adat adat : feltoltoLista) {
@@ -327,7 +355,85 @@ public class MainPanel extends javax.swing.JPanel {
         }
     }
 
-    private void eszkozBevitel() {
+    private void ujAdatBevitel() {
+        new vezerlo.AdatFrame();
+    }
 
+// Kilépő metódus
+    private void kilepes() {
+        parentFrame.setVisible(false);
+        parentFrame.dispose();
+    }
+
+// Rendező metódusok
+    private void felhasznaloSzerintRendez() {
+        Collections.sort(rendezolista, new FelhasznaloSzerint());
+        adatLstModel.clear();
+        for (Adat adat : rendezolista) {
+            adatLstModel.addElement(adat);
+        }
+    }
+
+    private void datumSzerintRendez() {
+        Collections.sort(rendezolista, new DatumSzerint());
+        adatLstModel.clear();
+        for (Adat adat : rendezolista) {
+            adatLstModel.addElement(adat);
+        }
+    }
+
+// Kereso metodusok
+    private void felhasznaloSzerintKeres() {
+        adatLstModel.clear();
+        for (Adat adat : rendezolista) {
+            if (keresoTextField.getText().equals(adat.getFelhasznalo())) {
+                adatLstModel.addElement(adat);
+            }
+        }
+    }
+
+    private void datumSzerintKeres() {
+        adatLstModel.clear();
+        for (Adat adat : rendezolista) {
+            if (keresoTextField.getText().equals(adat.getDatum())) {
+                adatLstModel.addElement(adat);
+            }
+        }
+    }
+
+    private void gyariSzamSzerintKeres() {
+        adatLstModel.clear();
+        for (Adat adat : rendezolista) {
+            if (keresoTextField.getText().equals(adat.getGyariSzam())) {
+                adatLstModel.addElement(adat);
+            }
+        }
+    }
+
+    private void leltarikodSzerintKeres() {
+        adatLstModel.clear();
+        for (Adat adat : rendezolista) {
+            if (keresoTextField.getText().equals(String.valueOf(adat.getLeltariKod()))) {
+                adatLstModel.addElement(adat);
+            }
+        }
+    }
+
+    private void adatkezeloSzerintKeres() {
+        adatLstModel.clear();
+        for (Adat adat : rendezolista) {
+            if (keresoTextField.getText().equals(adat.getAdatKezelo())) {
+                adatLstModel.addElement(adat);
+            }
+        }
+    }
+
+    private void helyreallit() {
+        szuresCmbBox.setSelectedIndex(0);
+        szuroLst.clearSelection();
+        // TODO: szuro lista modellt torolni kell.
+        keresesCmbBox.setSelectedIndex(0);
+        keresoTextField.setText(null);
+        rendezesCmbBox.setSelectedIndex(0);
     }
 }

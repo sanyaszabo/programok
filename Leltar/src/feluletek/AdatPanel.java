@@ -18,6 +18,8 @@ import vezerlo.AdatFrame;
  */
 public class AdatPanel extends javax.swing.JPanel {
 
+    public static AdatFrame parentFrame;
+
     public AdatPanel() {
         initComponents();
     }
@@ -254,7 +256,11 @@ public class AdatPanel extends javax.swing.JPanel {
     private javax.swing.JButton visszalepBtn;
     // End of variables declaration//GEN-END:variables
 
-    public void adatBevitel() {
+    public static void setAdatFrame(AdatFrame frame) {
+        parentFrame = frame;
+    }
+
+    public void ujAdatBevitel() {
 
     }
 

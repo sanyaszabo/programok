@@ -5,6 +5,8 @@
  */
 package vezerlo;
 
+import feluletek.MainPanel;
+
 /**
  *
  * @author Sandor
@@ -20,6 +22,7 @@ public class MainFrame extends javax.swing.JFrame {
         setTitle(ABLAK_CIM);
         initComponents();
         setVisible(true);
+        MainPanel.setMainFrame(this);
     }
 
     /**

@@ -5,6 +5,8 @@
  */
 package vezerlo;
 
+import feluletek.AdatPanel;
+
 /**
  *
  * @author Sandor
@@ -20,6 +22,7 @@ public class AdatFrame extends javax.swing.JFrame {
         setTitle(ABLAK_CIM);
         initComponents();
         setVisible(true);
+        AdatPanel.setAdatFrame(this);
     }
 
     /**

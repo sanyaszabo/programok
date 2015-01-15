@@ -43,7 +43,7 @@
                           <Component id="adatModositoBtn" alignment="1" max="32767" attributes="0"/>
                           <Component id="adatTorloBtn" alignment="1" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
@@ -52,60 +52,38 @@
                               </Group>
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Component id="jScrollPane2" min="-2" pref="127" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="keresoAKLbl" min="-2" pref="89" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="keresoGySzLbl" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="keresoFelhasznLbl" min="-2" pref="88" max="-2" attributes="0"/>
-                                                      <Component id="keresoLKLbl1" alignment="0" min="-2" pref="88" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="keresoDatumLbl" min="-2" pref="89" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="keresoFelhasznTextField1" pref="102" max="32767" attributes="0"/>
-                                          <Component id="keresoGySzTextField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="keresoLKTextField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="keresoDatumTextField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="keresoAKTextField1" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
+                                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                                      <Component id="keresBtn" min="-2" pref="137" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-                                      <Component id="keresBtn" min="-2" pref="128" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="keresoTextField" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="keresesCmbBox" min="-2" pref="138" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
                               <Component id="adatModositoLbl1" min="-2" pref="128" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
-                              <Component id="keresesLbl" min="-2" pref="128" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="keresesLbl" min="-2" pref="138" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="27" max="32767" attributes="0"/>
+                      <EmptySpace pref="69" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="keresesLbl1" min="-2" pref="128" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="rendezesCmbBox" pref="128" max="32767" attributes="0"/>
-                                  <Component id="rendezBtn" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="rendezesCmbBox" min="-2" pref="138" max="-2" attributes="0"/>
+                                  <Component id="rendezBtn" min="-2" pref="138" max="-2" attributes="0"/>
+                                  <Component id="helyreallitBtn" min="-2" pref="138" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
@@ -153,43 +131,21 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="keresoFelhasznLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="keresoFelhasznTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="rendezesCmbBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="keresoGySzLbl" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
-                                  <Component id="keresoGySzTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="keresoLKLbl1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="keresoLKTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                      <Component id="rendezBtn" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="keresesCmbBox" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="keresoAKTextField1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="keresoAKLbl" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="keresoTextField" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="keresoDatumLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="keresoDatumTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rendezBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="keresBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="keresBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="15" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="helyreallitBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -239,7 +195,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Trebuchet MS" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#xda;j eszk&#xf6;z felvitele"/>
+        <Property name="text" type="java.lang.String" value="&#xda;j eszk&#xf6;z felv&#xe9;tele"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ujAdatBtnActionPerformed"/>
@@ -268,6 +224,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Kil&#xe9;p&#xe9;s"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kilepoBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="adatModositoLbl1">
       <Properties>
@@ -293,6 +252,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="szuresCmbBoxActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <AuxValues>
@@ -340,79 +302,12 @@
         <Property name="text" type="java.lang.String" value="Rendez&#xe9;s"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="keresoFelhasznLbl">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Trebuchet MS" size="14" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Felhaszn&#xe1;l&#xf3;:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="keresoGySzLbl">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Trebuchet MS" size="14" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Gy&#xe1;rt&#xf3;i sz&#xe1;m:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="keresoLKLbl1">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Trebuchet MS" size="14" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Lelt&#xe1;ri K&#xf3;d:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="keresoAKLbl">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Trebuchet MS" size="14" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Adatkezel&#x151;:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="keresoDatumLbl">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Trebuchet MS" size="14" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="D&#xe1;tum"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="keresoGySzTextField">
+    <Component class="javax.swing.JTextField" name="keresoTextField">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Trebuchet MS" size="12" style="1"/>
         </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="keresoFelhasznTextField1">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Trebuchet MS" size="12" style="1"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="keresoLKTextField">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Trebuchet MS" size="12" style="1"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="keresoDatumTextField">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Trebuchet MS" size="12" style="1"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="keresoAKTextField1">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Trebuchet MS" size="12" style="1"/>
-        </Property>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="rendezBtn">
@@ -422,6 +317,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Rendez!"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rendezBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="rendezesCmbBox">
       <Properties>
@@ -443,6 +341,37 @@
           <Font name="Trebuchet MS" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Keres!"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="keresBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="helyreallitBtn">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Trebuchet MS" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Helyre&#xe1;ll&#xed;t!"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="helyreallitBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="keresesCmbBox">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Trebuchet MS" size="14" style="1"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="6">
+            <StringItem index="0" value="V&#xe1;lasszon"/>
+            <StringItem index="1" value="Felhaszn&#xe1;l&#xf3;"/>
+            <StringItem index="2" value="D&#xe1;tum"/>
+            <StringItem index="3" value="Gy&#xe1;ri sz&#xe1;m"/>
+            <StringItem index="4" value="Lelt&#xe1;ri k&#xf3;d"/>
+            <StringItem index="5" value="Adatkezel&#x151;"/>
+          </StringArray>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>
