@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -33,7 +34,7 @@ public class FajlKezelo {
             ins = new FileInputStream(new File(path));
             fajlbol(ins);
         } catch (FileNotFoundException ex) {
-            System.err.println("A fájl nem található!");;
+            System.err.println("A fájl nem található!");
         } finally {
             try {
                 ins.close();
@@ -59,33 +60,42 @@ public class FajlKezelo {
         adatLista.add(adat);
     }
 
-    public static void fajlba() throws IOException {
-        File f = new File(path);
-        if (f.exists()) {
-            f.delete();
+    public static void fajlba() {
+        PrintWriter writer = null;
+        try {
+            File f = new File(path);
+            if (f.exists()) {
+                f.delete();
+            }
+            writer = new PrintWriter(path, CHAR_CODE);
+            for (Adat adat : adatLista) {
+                writer.println(adat.toString());
+            }
+            writer.close();
+            //TODO: Megcsinálni rendesen!!!
+        } catch (FileNotFoundException ex) {
+            System.err.println("A fájl nem található!");
+        } catch (UnsupportedEncodingException ex) {
+            System.err.println("Nem megfelelő kódolás!");
+        } finally {
+            writer.close();
         }
-        PrintWriter writer = new PrintWriter(path, CHAR_CODE);
-        for (Adat adat : adatLista) {
-            writer.println(adat.toString());
-        }
-        writer.close();
-        //TODO: Megcsinálni rendesen!!!
     }
 
     public static List adatLeker() {
         return adatLista;
     }
 
-    public static void adatHozzaAd(Adat adat) throws IOException {
+    public static void adatHozzaAd(Adat adat) {
         adatLista.add(adat);
         fajlba();
     }
 
-    public static void adatModosit(Adat adat) throws IOException {
+    public static void adatModosit(Adat adat) {
         fajlba();
     }
 
-    public static void adatTorles(Adat adat) throws IOException {
+    public static void adatTorles(Adat adat) {
         adatLista.remove(adat);
         fajlba();
     }
