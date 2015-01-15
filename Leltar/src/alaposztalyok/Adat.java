@@ -12,6 +12,7 @@ package alaposztalyok;
 public class Adat {
 
     private int leltariKod;
+    private String eszkoz;
     private String gyarto;
     private String tipus;
     private String gyariSzam;
@@ -23,8 +24,9 @@ public class Adat {
     private String adatKezelo;
     private String datum;
 
-    public Adat(int leltariKod, String gyarto, String tipus, String gyariSzam, String felhasznalo, String osztaly, String epulet, String szoba, String status, String adatKezelo, String datum) {
+    public Adat(int leltariKod, String eszkoz, String gyarto, String tipus, String gyariSzam, String felhasznalo, String osztaly, String epulet, String szoba, String status, String adatKezelo, String datum) {
         this.leltariKod = leltariKod;
+        this.eszkoz = eszkoz;
         this.gyarto = gyarto;
         this.tipus = tipus;
         this.gyariSzam = gyariSzam;

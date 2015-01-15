@@ -5,6 +5,8 @@
  */
 package vezerlo;
 
+import alaposztalyok.FajlKezelo;
+
 /**
  *
  * @author Sandor
@@ -12,7 +14,9 @@ package vezerlo;
 public class Main {
 
     public static void main(String[] args) {
+
         new LoginFrame();
+        new FajlKezelo().adatBeolvas();
     }
 
 }
