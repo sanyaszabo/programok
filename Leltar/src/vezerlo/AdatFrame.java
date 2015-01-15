@@ -13,12 +13,12 @@ import feluletek.AdatPanel;
  * @author Sandor
  */
 public class AdatFrame extends javax.swing.JFrame {
-
+    
     private static final int MAGASSAG = 500;
     private static final int SZELESSEG = 500;
     private static final String ABLAK_CIM = "Leltár";
     public AdatFrame frame;
-
+    
     public AdatFrame() {
         setSize(SZELESSEG, MAGASSAG);
         setTitle(ABLAK_CIM);
@@ -69,4 +69,9 @@ public class AdatFrame extends javax.swing.JFrame {
         adatPanel1.init(adat);
     }
 
+    private void bezar() {
+        frame.setVisible(false);
+        frame.dispose();
+    }
+    
 }
