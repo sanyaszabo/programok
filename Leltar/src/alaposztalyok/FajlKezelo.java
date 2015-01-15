@@ -23,15 +23,15 @@ public class FajlKezelo {
 
     public void adatBeolvas() {
         InputStream ins = this.getClass().getResourceAsStream(path);
-        Scanner fScanner = new Scanner(ins, CHAR_CODE);
-        {
-            String sor;
-            while (fScanner.hasNextLine()) {
-                sor = fScanner.nextLine();
-                if (!sor.isEmpty()) {
-                    adatGeneral(sor);
-                }
-            }
+        fajlbol(ins);
+    }
+
+    private void fajlbol(InputStream ins) {
+        Scanner fajlScanner = new Scanner(ins, CHAR_CODE);
+        String sor;
+        while (fajlScanner.hasNextLine()) {
+            sor = fajlScanner.nextLine();
+            adatGeneral(sor);
         }
     }
 
