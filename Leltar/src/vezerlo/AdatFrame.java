@@ -5,6 +5,7 @@
  */
 package vezerlo;
 
+import alaposztalyok.Adat;
 import feluletek.AdatPanel;
 
 /**
@@ -16,13 +17,14 @@ public class AdatFrame extends javax.swing.JFrame {
     private static final int MAGASSAG = 500;
     private static final int SZELESSEG = 500;
     private static final String ABLAK_CIM = "Leltár";
+    public AdatFrame frame;
 
     public AdatFrame() {
         setSize(SZELESSEG, MAGASSAG);
         setTitle(ABLAK_CIM);
         initComponents();
         setVisible(true);
-        AdatPanel.setAdatFrame(this);
+        adatPanel1.setAdatFrame(this);
     }
 
     /**
@@ -62,5 +64,9 @@ public class AdatFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private feluletek.AdatPanel adatPanel1;
     // End of variables declaration//GEN-END:variables
+
+    public void init(Adat adat) {
+        adatPanel1.init(adat);
+    }
 
 }

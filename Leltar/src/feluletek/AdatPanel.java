@@ -17,9 +17,10 @@ import vezerlo.AdatFrame;
  * @author Sandor
  */
 public class AdatPanel extends javax.swing.JPanel {
-
-    public static AdatFrame parentFrame;
-
+    
+    private AdatFrame parentFrame;
+    private Adat adat;
+    
     public AdatPanel() {
         initComponents();
     }
@@ -256,12 +257,17 @@ public class AdatPanel extends javax.swing.JPanel {
     private javax.swing.JButton visszalepBtn;
     // End of variables declaration//GEN-END:variables
 
-    public static void setAdatFrame(AdatFrame frame) {
+    public void setAdatFrame(AdatFrame frame) {
         parentFrame = frame;
     }
-
+    
     public void ujAdatBevitel() {
-
+        
     }
-
+    
+    public void init(Adat adat) {
+        this.adat = adat;
+        leltarLbl.setText("Leltári kód: " + adat.getLeltariKod());
+    }
+    
 }

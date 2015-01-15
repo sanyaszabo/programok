@@ -22,11 +22,11 @@ import vezerlo.MainFrame;
  * @author Sandor
  */
 public class MainPanel extends javax.swing.JPanel {
-
+    
     private DefaultListModel<Adat> adatLstModel = new DefaultListModel<>();
     private List<Adat> rendezolista = new ArrayList<>(FajlKezelo.adatLeker());
     public static MainFrame parentFrame;
-
+    
     public MainPanel() {
         initComponents();
         modellBetoltes();
@@ -85,6 +85,11 @@ public class MainPanel extends javax.swing.JPanel {
 
         adatModositoBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         adatModositoBtn.setText("Eszköz módosítása");
+        adatModositoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adatModositoBtnActionPerformed(evt);
+            }
+        });
 
         adatTorloBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         adatTorloBtn.setText("Eszköz törlése");
@@ -264,11 +269,11 @@ public class MainPanel extends javax.swing.JPanel {
     private void ujAdatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ujAdatBtnActionPerformed
         ujAdatBevitel();
     }//GEN-LAST:event_ujAdatBtnActionPerformed
-
+    
     private void kilepoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kilepoBtnActionPerformed
         kilepes();
     }//GEN-LAST:event_kilepoBtnActionPerformed
-
+    
     private void rendezBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rendezBtnActionPerformed
         if (rendezesCmbBox.getSelectedIndex() == 1) {
             felhasznaloSzerintRendez();
@@ -277,12 +282,12 @@ public class MainPanel extends javax.swing.JPanel {
             datumSzerintRendez();
         }
     }//GEN-LAST:event_rendezBtnActionPerformed
-
+    
     private void helyreallitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helyreallitBtnActionPerformed
         helyreallit();
         modellBetoltes();
     }//GEN-LAST:event_helyreallitBtnActionPerformed
-
+    
     private void keresBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keresBtnActionPerformed
         if (keresesCmbBox.getSelectedIndex() == 1) {
             felhasznaloSzerintKeres();
@@ -300,22 +305,26 @@ public class MainPanel extends javax.swing.JPanel {
             adatkezeloSzerintKeres();
         }
     }//GEN-LAST:event_keresBtnActionPerformed
-
+    
     private void szuresCmbBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_szuresCmbBoxActionPerformed
         if (szuresCmbBox.getSelectedIndex() == 1) {
             szuroLst.setModel(new javax.swing.AbstractListModel() {
                 String[] strings = {"Monitor", "PC", "Notebook"};
-
+                
                 public int getSize() {
                     return strings.length;
                 }
-
+                
                 public Object getElementAt(int i) {
                     return strings[i];
                 }
             });
         }
     }//GEN-LAST:event_szuresCmbBoxActionPerformed
+    
+    private void adatModositoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adatModositoBtnActionPerformed
+        modosit();
+    }//GEN-LAST:event_adatModositoBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adatModositoBtn;
@@ -354,7 +363,7 @@ public class MainPanel extends javax.swing.JPanel {
             adatLstModel.addElement(adat);
         }
     }
-
+    
     private void ujAdatBevitel() {
         new vezerlo.AdatFrame();
     }
@@ -373,7 +382,7 @@ public class MainPanel extends javax.swing.JPanel {
             adatLstModel.addElement(adat);
         }
     }
-
+    
     private void datumSzerintRendez() {
         Collections.sort(rendezolista, new DatumSzerint());
         adatLstModel.clear();
@@ -391,7 +400,7 @@ public class MainPanel extends javax.swing.JPanel {
             }
         }
     }
-
+    
     private void datumSzerintKeres() {
         adatLstModel.clear();
         for (Adat adat : rendezolista) {
@@ -400,7 +409,7 @@ public class MainPanel extends javax.swing.JPanel {
             }
         }
     }
-
+    
     private void gyariSzamSzerintKeres() {
         adatLstModel.clear();
         for (Adat adat : rendezolista) {
@@ -409,7 +418,7 @@ public class MainPanel extends javax.swing.JPanel {
             }
         }
     }
-
+    
     private void leltarikodSzerintKeres() {
         adatLstModel.clear();
         for (Adat adat : rendezolista) {
@@ -418,7 +427,7 @@ public class MainPanel extends javax.swing.JPanel {
             }
         }
     }
-
+    
     private void adatkezeloSzerintKeres() {
         adatLstModel.clear();
         for (Adat adat : rendezolista) {
@@ -427,7 +436,7 @@ public class MainPanel extends javax.swing.JPanel {
             }
         }
     }
-
+    
     private void helyreallit() {
         szuresCmbBox.setSelectedIndex(0);
         szuroLst.clearSelection();
@@ -435,5 +444,12 @@ public class MainPanel extends javax.swing.JPanel {
         keresesCmbBox.setSelectedIndex(0);
         keresoTextField.setText(null);
         rendezesCmbBox.setSelectedIndex(0);
+    }
+    
+    public void modosit() {
+        AdatFrame adatFrame = new AdatFrame();
+        Adat selected = (Adat) mainLst.getSelectedValue();
+        adatFrame.init(selected);
+        
     }
 }
