@@ -7,18 +7,20 @@ package vezerlo;
 
 import alaposztalyok.Adat;
 import feluletek.AdatPanel;
+import feluletek.MainPanel;
 
 /**
  *
  * @author Sandor
  */
 public class AdatFrame extends javax.swing.JFrame {
-    
+
     private static final int MAGASSAG = 500;
     private static final int SZELESSEG = 500;
     private static final String ABLAK_CIM = "Leltár";
     public AdatFrame frame;
-    
+    public MainPanel mainPanel1;
+
     public AdatFrame() {
         setSize(SZELESSEG, MAGASSAG);
         setTitle(ABLAK_CIM);
@@ -65,13 +67,16 @@ public class AdatFrame extends javax.swing.JFrame {
     private feluletek.AdatPanel adatPanel1;
     // End of variables declaration//GEN-END:variables
 
-    public void init(Adat adat) {
+    public void init(Adat adat, MainPanel mainPanel) {
         adatPanel1.init(adat);
+        mainPanel1 = mainPanel;
     }
 
-    private void bezar() {
-        frame.setVisible(false);
-        frame.dispose();
+    public void bezar() {
+        setVisible(false);
+        mainPanel1.modellBetoltes();
+        dispose();
+
     }
-    
+
 }

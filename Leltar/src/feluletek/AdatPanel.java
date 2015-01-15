@@ -309,6 +309,7 @@ public class AdatPanel extends javax.swing.JPanel {
         adat.setAdatKezelo(LoginPanel.felhasznalonev);
         adat.setDatum(new Date());
         FajlKezelo.adatModosit(adat);
+        parentFrame.bezar();
 
     }
 

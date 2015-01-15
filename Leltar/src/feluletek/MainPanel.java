@@ -355,7 +355,7 @@ public class MainPanel extends javax.swing.JPanel {
     }
 
 // modellBetoltes() adatLstModel-be berakja az adatokat.
-    private void modellBetoltes() {
+    public void modellBetoltes() {
         adatLstModel.clear();
         mainLst.setModel(adatLstModel);
         for (Adat adat : FajlKezelo.adatLeker()) {
@@ -448,6 +448,6 @@ public class MainPanel extends javax.swing.JPanel {
     public void modosit() {
         AdatFrame adatFrame = new AdatFrame();
         Adat selected = (Adat) mainLst.getSelectedValue();
-        adatFrame.init(selected);
+        adatFrame.init(selected, this);
     }
 }
