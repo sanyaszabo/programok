@@ -93,6 +93,11 @@ public class MainPanel extends javax.swing.JPanel {
 
         adatTorloBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         adatTorloBtn.setText("Eszköz törlése");
+        adatTorloBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adatTorloBtnActionPerformed(evt);
+            }
+        });
 
         kilepoBtn.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         kilepoBtn.setText("Kilépés");
@@ -326,6 +331,10 @@ public class MainPanel extends javax.swing.JPanel {
         modosit();
     }//GEN-LAST:event_adatModositoBtnActionPerformed
 
+    private void adatTorloBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adatTorloBtnActionPerformed
+        torol();
+    }//GEN-LAST:event_adatTorloBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adatModositoBtn;
     private javax.swing.JLabel adatModositoLbl;
@@ -451,5 +460,12 @@ public class MainPanel extends javax.swing.JPanel {
         AdatFrame adatFrame = new AdatFrame();
         Adat selected = (Adat) mainLst.getSelectedValue();
         adatFrame.init(selected, this);
+    }
+
+    private void torol() {
+        //TODO Biztos törölni akarod?!
+        Adat selected = (Adat) mainLst.getSelectedValue();
+        FajlKezelo.adatTorles(selected);
+        modellBetoltes();
     }
 }
