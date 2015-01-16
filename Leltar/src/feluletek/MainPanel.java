@@ -364,7 +364,9 @@ public class MainPanel extends javax.swing.JPanel {
     }
 
     private void ujAdatBevitel() {
-        new vezerlo.AdatFrame();
+        AdatFrame adatFrame = new AdatFrame();
+        Adat selected = (Adat) mainLst.getSelectedValue();
+        adatFrame.init(new Adat(), this);
     }
 
 // Kilépő metódus

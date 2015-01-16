@@ -42,6 +42,9 @@ public class Adat {
         this.datum = datum;
     }
 
+    public Adat() {
+    }
+
     @Override
     public String toString() {
         return "" + leltariKod + ";" + eszkoz + ";" + gyarto + ";" + tipus + ";" + gyariSzam + ";" + felhasznalo + ";" + osztaly + ";" + epulet + ";" + szoba + ";" + status + ";" + adatKezelo + ";" + datum + ";";

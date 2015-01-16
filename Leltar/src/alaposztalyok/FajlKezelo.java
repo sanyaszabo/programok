@@ -87,6 +87,8 @@ public class FajlKezelo {
     }
 
     public static void adatHozzaAd(Adat adat) {
+        Adat lastData = adatLista.get(adatLista.size() - 1);
+        adat.setLeltariKod(lastData.getLeltariKod() + 1);
         adatLista.add(adat);
         fajlba();
     }
@@ -99,4 +101,10 @@ public class FajlKezelo {
         adatLista.remove(adat);
         fajlba();
     }
+
+    public static boolean isNew(Adat adat) {
+
+        return !adatLista.contains(adat);
+    }
+
 }
